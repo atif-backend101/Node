@@ -1,0 +1,32 @@
+### get all products
+
+GET http://127.0.0.1:3000/api/products Http/1.1
+
+
+### get single products
+
+GET http://127.0.0.1:3000/api/products/62614c48ee6cdeb1f86acfd0 Http/1.1
+
+### Add product
+
+POST http://127.0.0.1:3000/api/products/create Http/1.1
+content-type: application/json
+
+{
+    "title": "mobile",  
+    "price": "500",
+    "image": "https://media.istockphoto.com/photos/mobile-phone-top-view-with-white-screen-picture-id1161116588?k=20&m=1161116588&s=612x612&w=0&h=NKv_O5xQecCHZic53onobxjqGfW7I-D-tBrzXaPbj_Q=",
+    "details": "just black"
+} 
+
+### Add product
+
+PUT http://127.0.0.1:3000/api/products/update/62614c48ee6cdeb1f86acfd0 Http/1.1
+content-type: application/json
+
+{
+    "title": "updated",  
+    "price": "500",
+    "image": "https://media.istockphoto.com/photos/mobile-phone-top-view-with-white-screen-picture-id1161116588?k=20&m=1161116588&s=612x612&w=0&h=NKv_O5xQecCHZic53onobxjqGfW7I-D-tBrzXaPbj_Q=",
+    "details": "just black"
+} 

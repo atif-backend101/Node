@@ -1,0 +1,33 @@
+
+    <div>
+      <form action="/products/update/<%= quotes._id %>?_method=POST" method="post" enctype="multipart/form-data" >
+        <div>
+          <div>
+            <label id='title'>Title</label>
+          </div>
+          <input type='text' name="quotes[title]" value="<%= quotes.title %>" for='name'>
+          <input type='hidden' name='quotes[productId]' value="<%= quotes._id %>" for='id'>
+        </div>
+        <div>
+          <div> 
+            <label id='price'>Price</label>
+          </div>
+          <input type='text' name='quotes[price]' value="<%= quotes.price %>" for='name'>
+        </div>
+        <div>
+          <div>
+            <label id='details'>Details</label>
+          </div>
+          <input type='text' value="<%= quotes.details %>" name='quotes[details]' for='name'>
+        </div>
+        <div>
+          <div>
+            <label id='image'>Image</label>
+          </div>
+          <input type='file' name='quotes[image]' for='quotes'>        
+        </div>
+        
+          <button type="submit">Update</button>
+        </div>
+      </form>
+  </div>

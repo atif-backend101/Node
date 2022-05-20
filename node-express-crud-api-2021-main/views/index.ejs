@@ -1,0 +1,63 @@
+
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Star Wars Quote App</title>
+  </head>
+
+  <body>
+    <h1>May Node and Express be with you.</h1>
+    
+    <li><a href="/home/signup">Sign up!!</a></li>
+    <li><a href="/home/signin">Login</a></li>
+    <li><a href="/products/logout">Logout</a></li>
+    <form action="/quotes" method="POST">
+      <input type="text" placeholder="name" name="name" />
+      <input type="text" placeholder="quote" name="quote" />
+      <button type="submit">Submit</button>
+    </form>
+      <% for(var i = 0; i < quotes.length; i++) {%>
+    <table>
+      <tr>
+        <td class="quote">
+             <!-- Output name from the iterated quote object -->
+          <span><%= quotes[i].title %></span>:
+             <!-- Output id from the iterated quote object -->          
+          <span><%= quotes[i].price %></span>:
+          <!-- Output quote from the iterated quote object -->
+          <span><img src="<%= quotes[i].image %>" alt="" width="75"></span>
+          <!-- Output quote from the iterated quote object -->
+          <span><%= quotes[i].details %></span>
+        </td> 
+        <td class="quote">
+          <a href="/products/view/<%= quotes[i]._id %>" > <button id="view-button" >View</button></a> 
+          <a href="/products/edit/<%= quotes[i]._id %>" > <button id="view-button" >Update</button></a> 
+          <a href="/products/remove/<%= quotes[i]._id %>" > <button id="view-button" >Delete</button></a> 
+          
+        </td> 
+     </tr> </table>
+    <div>
+
+  <% } %>
+   <button id="update-button">update</button>
+     <a href="/products/add/" > <button id="update-button" >Insert New Record</button></a> 
+     <div id="message"></div>
+<script src="/main.js"></script>
+  </body>
+</html>
+<script type="text/javascript">
+var multer = require('multer');
+  
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '-' + Date.now())
+    }
+});
+  
+var upload = multer({ storage: storage });
+</script>

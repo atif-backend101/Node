@@ -1,0 +1,32 @@
+
+    <div>
+      <form action="/products/update/<%= quotes._id %>?_method=POST" method="POST" >
+        <div>
+          <div>
+            <label id='title'>Title</label>
+          </div>
+          <input type='text' name="title" value="<%= quotes.title %>" for='name'>
+        </div>
+        <div>
+          <div> 
+            <label id='price'>Price</label>
+          </div>
+          <input type='text' name='price' value="<%= quotes.price %>" for='name'>
+        </div>
+        <div>
+          <div>
+            <label id='details'>Details</label>
+          </div>
+          <input type='text' value="<%= quotes.details %>" name='details' for='name'>
+        </div>
+        <div>
+          <div>
+            <label id='image'>Image</label>
+          </div>
+          <input type='file' name='Image' for='quotes'>        
+        </div>
+        
+          <button type="submit">Update</button>
+        </div>
+      </form>
+  </div>
