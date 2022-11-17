@@ -44,11 +44,12 @@ socketIO.on("connection", function (socket) {
 		connection.query("SELECT * FROM users WHERE id = " + data.userId, function (error, receiver) {
 			if (receiver != null) {
 				if (receiver.length > 0) {
-
 					connection.query("SELECT * FROM users WHERE id = " + data.myId, function (error, sender) {
 						if (sender.length > 0) {
-							var message = "New message received from: " + sender[0].name + ". Message: " + data.message;
+							var message = sender[0].name + ". Says: " + data.message;
+							var messagesent = "You: " + ". Says: " + data.message;
 							socketIO.to(users[receiver[0].id]).emit("messageReceived", message);
+							socketIO.to(users[sender[0].id]).emit("messageSent", messagesent);							
 						}
 					});
 				}
@@ -58,5 +59,5 @@ socketIO.on("connection", function (socket) {
 });
 
 http.listen(process.env.PORT || 3000, function () {
-	console.log("Server is started.");
+	console.log("Server is started port is 3000.");
 });

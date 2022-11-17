@@ -1,5 +1,5 @@
 
-<script src="socket.io.js"></script>
+
 <?php
 	$conn = new PDO("mysql:host=localhost;dbname=test", "root", "");
 	$sql = "SELECT * FROM users";
@@ -25,6 +25,7 @@
 				<td>
 					<form method="POST" onsubmit="return sendEvent(this);">
 						<input type="hidden" name="id" value="<?php echo $user['id']; ?>" required />
+						<input type="text" name="message" id="message" required />
 						<input type="submit" value="Send Message" />
 					</form>
 				</td>
@@ -35,7 +36,9 @@
 
 <h3 id="my-id"></h3>
 <ul id="messages"></ul>
+<ul id="messages2"></ul>
 
+<script src="socket.io.js"></script>
 <script>
 
 	var userId = prompt("Enter user ID");
@@ -49,15 +52,22 @@
 		var html = "<li>" + data + "</li>";
 		document.getElementById("messages").innerHTML = html + document.getElementById("messages").innerHTML;
 	});
-
+	socketIO.on("messageSent", function (data) {
+		var html = "<li>" + data + "</li>";
+		document.getElementById("messages2").innerHTML = html + document.getElementById("messages2").innerHTML;
+	});
+	
+	// let message;
 	function sendEvent(form) {
 		event.preventDefault();
 
-		var message = prompt("Enter message");
+		// let message = prompt("Enter message");
 		socketIO.emit("sendEvent", {
 			"myId": userId,
 			"userId": form.id.value,
-			"message": message
+			"message": form.message.value
 		});
+		form.message.value = '';
 	}
+	
 </script>

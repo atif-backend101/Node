@@ -48,16 +48,19 @@
 		var html = "<li>" + data + "</li>";
 		document.getElementById("messages").innerHTML = html + document.getElementById("messages").innerHTML;
 	});
-
+	
+	let message;
 	function sendEvent(form) {
 		event.preventDefault();
 
-		var message = prompt("Enter message");
+		message = prompt("Enter message");
 		socketIO.emit("sendEvent", {
 			"myId": userId,
 			"userId": form.id.value,
 			"message": message
 		});
 	}
+	sendEvent()
+	console.log(message)
 </script>
 <script src="socket.io.js"></script>
